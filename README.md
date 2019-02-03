@@ -5,8 +5,6 @@ An item selection module for interactive shell applications.
 ![](https://raw.githubusercontent.com/blurfx/node-option/master/example.gif)
 
 
-
-
 ## Installation
 
 `npm install node-option`
@@ -25,6 +23,8 @@ Displays a options on the shell and allows the user to select.
 
 
 ## Usage
+
+#### Javascript
 
 ```javascript
 const Selector = require('./index');
@@ -50,8 +50,35 @@ result.then((value) => {
 });
 ```
 
+#### Typescript
+
+```typescript
+import Selector from 'node-option';
+
+const selector = new Selector({
+  bracketColor: 'blue',
+  markColor: 'white',
+  textColor: 'yellowBright',
+  highlight: true,
+});
+
+const result = selector
+    .add('One')
+    .add('Two')
+    .add('Three')
+    .add('Four')
+    .render();
+
+result.then((value) => {
+    console.log(value);
+}, (error) => {
+    console.error(error);
+})
+```
+
 ## Configuration
 
+`node-option` uses `chalk` to styling. You can check available colors [here](https://github.com/chalk/chalk#colors).
 
 ```javascript
 {
