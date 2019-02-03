@@ -27,7 +27,7 @@ Displays a options on the shell and allows the user to select.
 #### Javascript
 
 ```javascript
-const Selector = require('./index');
+const Selector = require('node-option');
 
 const selector = new Selector({
   bracketColor: 'blue',
