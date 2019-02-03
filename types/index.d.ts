@@ -17,8 +17,9 @@ export interface SelectorConstructor {
 	(options?: SelectorOptions): Selector;
 }
 
-export interface Selector {
-    add(text: string, value: any): this;
+export class Selector {
+    constructor(config?: SelectorOptions);
+    add(text: string, value?: any): this;
     render(): Promise<Array<any>>;
 }
 
