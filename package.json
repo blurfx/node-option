@@ -1,0 +1,46 @@
+{
+  "name": "node-option",
+  "version": "0.0.2",
+  "description": "Option selector for interactive shell application",
+  "main": "index.js",
+  "types": "types/index.d.ts",
+  "files": [
+		"index.js",
+    "events.js",
+    "fn.js",
+		"types/index.d.ts"
+	],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blurfx/node-option.git"
+  },
+  "keywords": [
+    "node",
+    "option",
+    "list",
+    "options",
+    "select",
+    "interactive",
+    "shell",
+    "terminal",
+    "console",
+    "color",
+    "command-line"
+  ],
+  "author": "blurfx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blurfx/node-option/issues"
+  },
+  "homepage": "https://github.com/blurfx/node-option#readme",
+  "dependencies": {
+    "chalk": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.21",
+    "typescript": "^3.3.1"
+  }
+}
