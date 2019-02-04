@@ -1,6 +1,6 @@
 {
   "name": "node-option",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Option selector for interactive shell application",
   "main": "index.js",
   "types": "types/index.d.ts",

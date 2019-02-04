@@ -82,14 +82,17 @@ result.then((value) => {
 
 ```javascript
 {
-    cursor: '>',            // character of pointer
-    checked: '✓',           // character to mark selected item
-    unchecked: ' ',         // character to mark unselected item
-    cursorColor: 'cyan',    // color of cursor
-    bracketColor: 'white',  // color of bracket
-    markColor: 'green',     // color of checked mark
-    textColor: 'yellow',    // color of text
-    multiselect: true,      // whether to select multiple items.
-    highlight: true,        // Whether to highlight item that cursor points.
+    cursor: '>',                  // string to item cursor
+    checkedMark: '✓',             // string to mark of selected item
+    uncheckedMark: ' ',           // string to mark of unselected item
+    markWrapperLeft: '[',         // string to the left of the checked/unchecked mark
+    markWrapperRight: ']',        // string to the right of the checked/unchecked mark
+    cursorColor: 'cyan',          // color of cursor
+    checkedMarkColor: 'green',    // color of checked mark
+    uncheckedMarkColor: 'black',  // color of cunhecked mark
+    markWrapperColor: 'white',    // color of markWrapperLeft and markWrapperRight
+    textColor: 'yellow',          // color of item text
+    multiselect: true,            // whether to allow select multiple items
+    highlight: true,              // whether to highlight item that cursor points
 }
 `

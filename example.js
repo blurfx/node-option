@@ -1,10 +1,10 @@
 const Selector = require('./index');
 
 const selector = new Selector({
-  bracketColor: 'blue',
-  markColor: 'white',
-  textColor: 'yellowBright',
-  multiselect: false,
+  markWrapperColor: 'blue',
+  checkedMarkColor: 'white',
+  textColor: 'yellow',
+  multiselect: true,
 });
 
 const result = selector

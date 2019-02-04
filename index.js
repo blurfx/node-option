@@ -8,14 +8,17 @@ const _encode = (str) => Buffer.from([0x1b].concat(str.split('').map(c => c.char
 
 class Selector {
   
-  constructor(config) {    
+  constructor(config) {
     this._config = Object.assign({
       cursor: '>',
-      checked: '✓',
-      unchecked: ' ',
+      checkedMark: '✓',
+      uncheckedMark: ' ',
+      markWrapperLeft: '[',
+      markWrapperRight: ']',
       cursorColor: 'cyan',
-      bracketColor: 'white',
-      markColor: 'green',
+      checkedMarkColor: 'green',
+      uncheckedMarkColor: 'black',
+      markWrapperColor: 'white',
       textColor: 'yellow',
       multiselect: true,
       highlight: true,
@@ -23,8 +26,9 @@ class Selector {
 
     const colorKeys = [
       this._config.cursorColor,
-      this._config.bracketColor,
-      this._config.markColor,
+      this._config.checkedMarkColor,
+      this._config.uncheckedMarkColor,
+      this._config.markWrapperColor,
       this._config.textColor,
     ];
 
@@ -66,20 +70,22 @@ class Selector {
     const self = this;
     const config = this._config;
     const colorize = {
-      bracket: chalk[config.bracketColor], 
+      wrapper: chalk[config.markWrapperColor],
       cursor: chalk[config.cursorColor],
-      checked: chalk[config.markColor],
+      checked: chalk[config.checkedMarkColor],
+      unchecked: chalk[config.uncheckedMarkColor],
       text: chalk[config.textColor],
     }
 
     this._options.forEach((option, index) => {
-      const cursorText = (self._cursor === index) ? config.cursor : ' ';
-      const checkedText = (option.checked) ? config.checked : config.unchecked;
+      const cursorText = self._cursor === index ? config.cursor : ' ';
+      const checkedText = (option.checked) ? colorize.checked(config.checkedMark) : colorize.unchecked(config.uncheckedMark);
+
       const text = [
         colorize.cursor(cursorText),
-        colorize.bracket('['),
-        colorize.checked(checkedText),
-        colorize.bracket(']'),
+        colorize.wrapper(config.markWrapperLeft),
+        checkedText,
+        colorize.wrapper(config.markWrapperRight),
         ' ',
         colorize.text(option.text),
       ];
@@ -87,7 +93,7 @@ class Selector {
       if(self._cursor === index && config.highlight) {
         text[5] = chalk.inverse(text[5]);
       }
-       
+
       console.log(text.join(''));
     });
 
@@ -131,8 +137,10 @@ class Selector {
 
   _uncheck() {
     const options = this._options;
-    if(options[this._cursor] !== undefined && options[this._cursor].checked) {
-      options[this._cursor].checked = false;
+    const cursor = this._cursor;
+
+    if(options[cursor] !== undefined && options[cursor].checked) {
+      options[cursor].checked = false;
       --this._selectedCount;
     }
 
@@ -142,9 +150,11 @@ class Selector {
   _check() {
     const options = this._options;
     const config = this._config;
-    if(options[this._cursor] !== undefined && !options[this._cursor].checked) {
+    const cursor = this._cursor;
+
+    if(options[cursor] !== undefined && !options[cursor].checked) {
       if(config.multiselect === true || this._selectedCount === 0){
-        options[this._cursor].checked = true;
+        options[cursor].checked = true;
         ++this._selectedCount;
       }
     }
@@ -155,14 +165,16 @@ class Selector {
   _checkToggle() {
     const options = this._options;
     const config = this._config;
-    if(options[this._cursor] !== undefined) {
-      if(!options[this._cursor].checked === true) {
+    const cursor = this._cursor;
+
+    if(options[cursor] !== undefined) {
+      if(!options[cursor].checked === true) {
         if(config.multiselect === true || this._selectedCount === 0){
-          options[this._cursor].checked = true;
+          options[cursor].checked = true;
           ++this._selectedCount;
         }
       } else {
-        options[this._cursor].checked = false;
+        options[cursor].checked = false;
           --this._selectedCount;
       }
     }
