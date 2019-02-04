@@ -30,10 +30,10 @@ Displays a options on the shell and allows the user to select.
 const Selector = require('node-option');
 
 const selector = new Selector({
-  bracketColor: 'blue',
-  markColor: 'white',
-  textColor: 'yellowBright',
-  highlight: true,
+  markWrapperColor: 'blue',
+  checkedMarkColor: 'white',
+  textColor: 'yellow',
+  multiselect: true,
 });
 
 const result = selector
@@ -56,10 +56,10 @@ result.then((value) => {
 import Selector from 'node-option';
 
 const selector = new Selector({
-  bracketColor: 'blue',
-  markColor: 'white',
-  textColor: 'yellowBright',
-  highlight: true,
+    markWrapperColor: 'blue',
+    checkedMarkColor: 'white',
+    textColor: 'yellow',
+    multiselect: true,
 });
 
 const result = selector
