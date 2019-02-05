@@ -95,4 +95,4 @@ result.then((value) => {
     multiselect: true,            // whether to allow select multiple items
     highlight: true,              // whether to highlight item that cursor points
 }
-`
+```
